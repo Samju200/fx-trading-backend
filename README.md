@@ -31,7 +31,7 @@ A robust backend system for currency trading and wallet management built with Ne
 - **Framework**: NestJS 10.x
 - **Language**: TypeScript
 - **ORM**: TypeORM
-- **Database**: PostgreSQL 15
+- **Database**: PostgreSQL 17
 - **Cache**: Redis
 - **Email**: NodeMailer (Gmail SMTP)
 - **Validation**: class-validator, class-transformer
@@ -99,7 +99,7 @@ FXRate (id, baseCurrency, targetCurrency, rate, source, createdAt)
 ### Prerequisites
 
 - Node.js 18+ and npm
-- PostgreSQL 15+
+- PostgreSQL 17
 - Redis 6+
 - Git
 
@@ -114,11 +114,10 @@ PORT=3000
 APP_URL=http://localhost:3000
 
 # Database
-DB_HOST=localhost
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=your_password
-DB_DATABASE=fx_trading_db
+
+DATABASE_URL=postgresql://username:password@host:5432/database_name?sslmode=require
+DB_SYNCHRONIZE=true
+DB_LOGGING=false
 
 # Redis
 REDIS_HOST=localhost
@@ -716,10 +715,6 @@ fx-trading-backend/
 │   │   └── seeds/
 │   ├── app.module.ts
 │   └── main.ts
-├── test/
-│   ├── auth.e2e-spec.ts
-│   ├── wallet.e2e-spec.ts
-│   └── transactions.e2e-spec.ts
 ├── .env.example
 ├── .gitignore
 ├── nest-cli.json
