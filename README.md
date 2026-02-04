@@ -98,7 +98,7 @@ FXRate (id, baseCurrency, targetCurrency, rate, source, createdAt)
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 22+ and npm
 - PostgreSQL 17
 - Redis 6+
 - Git
@@ -189,9 +189,14 @@ npm run migration:revert
 http://localhost:3000/api/v1
 ```
 
+```
+https://fx-trading-backend.onrender.com/api/v1
+```
+
 ### Swagger Documentation
 
 Access interactive API docs at: `http://localhost:3000/api/docs`
+`https://fx-trading-backend.onrender.com/api/docs`
 
 ### Authentication
 
