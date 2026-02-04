@@ -22,19 +22,19 @@ import { TransactionsModule } from "./transactions/transaction.module";
     // Database
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: "postgres",
-        host: configService.get("DB_HOST"),
-        port: configService.get("DB_PORT"),
-        username: configService.get("DB_USERNAME"),
-        password: configService.get("DB_PASSWORD"),
-        database: configService.get("DB_DATABASE"),
-        entities: [__dirname + "/**/*.entity{.ts,.js}"],
+        url: configService.get<string>("DATABASE_URL"),
+
+        autoLoadEntities: true,
         synchronize: configService.get("DB_SYNCHRONIZE") === "true",
         logging: configService.get("DB_LOGGING") === "true",
-        autoLoadEntities: true,
+
+        ssl: {
+          rejectUnauthorized: false,
+        },
       }),
-      inject: [ConfigService],
     }),
 
     // Redis Cache
